@@ -19,12 +19,12 @@
             </a>
         </li><!-- End Profile Page Nav -->
 
-        <!-- <li class="nav-item">
-            <a class="nav-link collapsed" href="faltu_page">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{url('admin/subscribed')}}">
                 <i class="bi bi-question-circle"></i>
-                <span>F.A.Q</span>
+                <span>Subscribed User</span>
             </a>
-        </li> -->
+        </li> 
         <!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">

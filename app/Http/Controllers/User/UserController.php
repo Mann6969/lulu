@@ -99,7 +99,7 @@ class UserController extends Controller
     }
     public function listing()
     {
-        $data = Biodata::select('id','name','caste','religion','dob','education','occupation')->get();
+        $data = Biodata::select('id','name','caste','religion','dob','education','occupation','img','gender')->get();
         // die(dd($data));
         return view('user.listing.listing',['values' => $data]);
     }

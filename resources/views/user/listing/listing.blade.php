@@ -70,47 +70,33 @@
                         <div class="listing_7">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">SED</h3>
+                                    <h3 class="panel-title">Gender</h3>
                                     <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
                                 </div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
-                                        Nisi </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
-                                        Quis </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
-                                        Ante </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
-                                        Fusce </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
-                                        Augue </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
-                                        Porta </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
-                                        Massa </a></div>
+                                <div class="panel-body" style="display: block;"><a><input type="checkbox">
+                                        Male </a></div>
+                                <div class="panel-body" style="display: block;"><a><input type="checkbox">
+                                        Female </a></div>
                             </div>
                         </div>
                         <div class="listing_7">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
-                                        MAURIS</h3>
+                                        Caste</h3>
                                     <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
                                 </div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox"> 11
-                                        GB </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox"> 22
-                                        GB </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox"> 13
-                                        GB </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox"> 24
-                                        GB </a></div>
                                 <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
-                                        15
-                                        GB </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox"> 16
-                                        GB </a></div>
+                                        Digambar </a>
+                                </div>
                                 <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
-                                        700 MB </a></div>
+                                        Shwetamber </a></div>
+                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
+                                        Porwal </a></div>
+                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
+                                        Vania </a></div>
+                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
+                                        Others </a></div>
                             </div>
                         </div>
                         <div class="listing_7">
@@ -128,12 +114,12 @@
                                         Massa </a></div>
                                 <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
                                         Nisi </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input
-                                            type="checkbox"> Quis </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input
-                                            type="checkbox"> Ante </a></div>
-                                <div class="panel-body" style="display: block;"><a href="#"><input
-                                            type="checkbox"> Fusce </a></div>
+                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
+                                        Quis </a></div>
+                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
+                                        Ante </a></div>
+                                <div class="panel-body" style="display: block;"><a href="#"><input type="checkbox">
+                                        Fusce </a></div>
                             </div>
                         </div>
 
@@ -159,24 +145,45 @@
                                                     <div class="listing_inner_1 clearfix">
                                                         <div class="col-sm-2 space_all">
                                                             {{-- <div class="listing_11"> --}}
-                                                                <a><img src="{{ asset('user/img/male.jpg') }}" width="100%"></a>
+                                                            <a><img
+                                                                    src="
+                                                                @if ($item->img == null) @if ($item->gender == 'male')
+                                                                        {{ asset('user/img/male.jpg') }}
+                                                                    @else
+                                                                        {{ asset('user/img/female.jpg') }} @endif
+@else
+{{ asset('files/profile_img/' . $item->img) }}
+                                                                @endif
+                                                                "width="100%">
+                                                            </a>
                                                             {{-- </div> --}}
                                                         </div>
                                                         <div class="col-sm-10">
                                                             <div class="col-sm-12 space_all">
                                                                 <div class="col-sm-10 space_all">
                                                                     <div class="listing_12 clearfix">
-                                                                        <h4><i class="fa fa-heart"></i><a>{{ $item->name }}</a></h4>
+                                                                        <h4><i
+                                                                                class="fa fa-heart"></i><a>{{ $item->name }}</a>
+                                                                        </h4>
                                                                         <ul>
-                                                                            <li><a><i class="fa fa-dot-circle-o"></i>D.O.B.:{{  $item->dob }}</a></li>
                                                                             <li><a><i
-                                                                                        class="fa fa-dot-circle-o"></i>Religion:{{ $item->religion }}</a></li>
-                                                                            <li><a><i class="fa fa-dot-circle-o"></i>Caste:{{ $item->caste }}</a></li>
-                                                                            <li><a><i class="fa fa-dot-circle-o"></i>Education:{{ $item->education }}</a></li>
-                                                                            <li><a><i class="fa fa-dot-circle-o"></i>Occupation:{{ $item->occupation }}</a></li>
+                                                                                        class="fa fa-dot-circle-o"></i>D.O.B.:{{ $item->dob }}</a>
+                                                                            </li>
+                                                                            <li><a><i
+                                                                                        class="fa fa-dot-circle-o"></i>Religion:{{ $item->religion }}</a>
+                                                                            </li>
+                                                                            <li><a><i
+                                                                                        class="fa fa-dot-circle-o"></i>Caste:{{ $item->caste }}</a>
+                                                                            </li>
+                                                                            <li><a><i
+                                                                                        class="fa fa-dot-circle-o"></i>Education:{{ $item->education }}</a>
+                                                                            </li>
+                                                                            <li><a><i
+                                                                                        class="fa fa-dot-circle-o"></i>Occupation:{{ $item->occupation }}</a>
+                                                                            </li>
                                                                         </ul>
                                                                         <h5 class="text-right"><a
-                                                                                href="{{  route('profile',['id' => $item->id]) }}">View
+                                                                                href="{{ route('profile', ['id' => $item->id]) }}">View
                                                                                 Full Profile</a></h5>
                                                                     </div>
                                                                 </div>

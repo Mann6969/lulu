@@ -38,10 +38,10 @@
                                         <td>
                                             @if ($file->status == 0)
                                                 <input class="form-check-input" type="checkbox" value=""
-                                                    id="status" disabled>
+                                                    id="status" disabled hidden><i class="bi bi-bookmark-check" style="color: red"></i>
                                             @else
                                                 <input class="form-check-input" type="checkbox" value=""
-                                                    id="status" checked disabled>
+                                                    id="status" checked disabled hidden><i class="bi bi-bookmark-check-fill" style="color: rgb(45, 142, 207)"></i>
                                             @endif
                                         </td>
                                         <td>

@@ -36,8 +36,18 @@
                                 <div class="col-sm-4 space_all">
                                     <div class="details_3">
                                         <p>
-                                            <a href="#"><img src="{{ '../files/profile_img/' . $values->img }}"
-                                                    width="100%"></a>
+                                            <a href="#"><img src="
+                                                @if ($values->img == null)
+                                                    @if ($values->gender == 'male')
+                                                        {{ asset('user/img/male.jpg') }}
+                                                    @else
+                                                        {{ asset('user/img/female.jpg') }}
+                                                    @endif
+                                                @else
+                                                    {{ asset('files/profile_img/'.$values->img) }}
+                                                @endif
+                                                "width="100%">
+                                            </a>
                                         </p>
                                     </div>
                                     {{-- <div class="details_4">

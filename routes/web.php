@@ -24,12 +24,20 @@ Auth::routes();
 //admin Routes
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::prefix('admin')->middleware(['auth'])->group(function(){
+    // Dashboard page
     Route::get('/index', [AdminController::class, 'index']);
+    // Upload User page
     Route::get('/upload_user', [AdminController::class, 'upload_users']);
     Route::post('/submit', [AdminController::class, 'submit']);
     Route::get('/upload_user/{fid}', [AdminController::class, 'upload_user']);
+    // Show User page
     Route::get('/show_user', [AdminController::class, 'show_user']);
     Route::get('/view/{id}', [AdminController::class, 'view']);
+    Route::get('/edit/{id}', [AdminController::class, 'edit']);
+    Route::post('/update', [AdminController::class, 'update']);
+    //subscribed user
+    Route::get('/subscribed', [AdminController::class, 'subscribed']);
+
 });
 
 //user routes
