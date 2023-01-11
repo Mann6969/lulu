@@ -1,57 +1,87 @@
 @extends('admin.index')
 @section('content')
     <main id="main" class="main">
-
+        {{-- <div class="row"> --}}
         <div class="pagetitle">
-            <h1>Status</h1>
+            <h1>Users</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index">Home</a></li>
-                    <li class="breadcrumb-item active">User Files Status</li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/index') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Users Info.</li>
                 </ol>
             </nav>
-        </div><!-- End Page Title -->
+            <p class="card-description">
+                @if (Session::has('message'))
+                    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                @endif
+            </p>
 
-        <section class="section dashboard">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">User files uploaded</h5>
+            <!-- End Page Title -->
 
-                    <!-- Table with hoverable rows -->
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Phone no.</th>
-                                <th scope="col">Action</th>
-                                <th scope="col"> </th>
-                                <!-- <th scope="col">Start Date</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($show as $data)
-                                <tr>
-                                    <td>{{ $data->fid }} </td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>{{ $data->phone }}</td>
-                                    <td>
-                                        <a class="btn btn-success" href="{{ url('admin/view/' . $data->id) }}">View <i
-                                                class="bi bi-eye-fill"></i></a>
-                                                <a class="btn btn-warning" href="{{ url('admin/edit/' . $data->id) }}">Edit <i class="bi bi-pen"></i></a>
-                                        <a class="btn btn-danger">Delete <i class="bi bi-trash-fill"></i></a>
-                                    </td>
-                                    
-                                </tr>
-                            @endforeach
+            <section class="section dashboard">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <h5 class="card-title">Users</h5>
+                            </div>
+
+                            <div class="col-lg-6 ">
+                                <form class="float-end" action="{{ url('admin/searchuser') }}" method="GET"
+                                    style="margin: 20px">
+
+                                    <div class="input-group ">
+                                        <div class="form-outline ">
+                                            <input type="search" name="search" placeholder="Search" id="form1"
+                                                class="form-control" />
+
+                                        </div>
+                                        <button class="btn btn-primary " type="submit"><i
+                                                class="bi bi-search"></i></button>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Table with hoverable rows -->
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Phone no.</th>
+                                        <th scope="col">Action</th>
+                                        <th scope="col"> </th>
+                                        <!-- <th scope="col">Start Date</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($show as $data)
+                                        <tr>
+                                            <td>{{ $data->fid }} </td>
+                                            <td>{{ $data->name }}</td>
+                                            <td>{{ $data->gender }}</td>
+                                            <td>{{ $data->phone }}</td>
+                                            <td>
+                                                <a class="btn btn-success" href="{{ url('admin/view/' . $data->id) }}">View
+                                                    <i class="bi bi-eye-fill"></i></a>
+                                                <a class="btn btn-warning" href="{{ url('admin/edit/' . $data->id) }}">Edit
+                                                    <i class="bi bi-pen"></i></a>
+                                                <a class="btn btn-danger">Delete <i class="bi bi-trash-fill"></i></a>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
 
 
-                        </tbody>
-                    </table>
-                    <!-- End Table with hoverable rows -->
-                </div>
-            </div>
-        </section>
+                                </tbody>
+                            </table>
+                            <div class="row">{{ $show->links() }}</div>
+                            <!-- End Table with hoverable rows -->
+                        </div>
+                    </div>
+            </section>
 
     </main>
 @endsection

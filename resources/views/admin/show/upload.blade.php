@@ -1,40 +1,13 @@
 @extends('admin.index')
 @section('content')
-    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- w-100 class so that header
-                    div covers 100% width of parent div -->
-                    <h5 class="modal-title w-100" id="exampleModalLabel">
-                        GeeksForGeeks
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">
-                            ×
-                        </span>
-                    </button>
-                </div>
-                <!--Modal body with image-->
-                <div class="modal-body">
-                    <img src="gfg.png" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
+    
     <main id="main" class="main">
 
         <div class="pagetitle">
             <h1>Upload</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/index') }}">Home</a></li>
                     <li class="breadcrumb-item active">Upload</li>
                 </ol>
             </nav>
@@ -55,8 +28,8 @@
                     <h5 class="card-title">User files uploaded</h5>
                     <p>Click on each file to download it as per requirements</p>
                     @foreach (json_decode($file->filenames) as $item)
-                        {{-- <embed src="{{ '../../files/' . $item }}" width="100px" height="100px" /> --}}
-                        <a href="{{ '../../files/' . $item }}" download>
+                        {{-- <embed src="{{ asset('files/' . $item) }}" width="100px" height="100px" /> --}}
+                        <a href="{{ asset('files/' . $item) }}" download>
                             {{ $item }}<br>
                         </a>
                     @endforeach
@@ -111,12 +84,17 @@
                                 name="phone">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Height</label>
-                            <input type="text" class="form-control" name="height">
+                            <label class="form-label">Height(in cm)</label>
+                            <input type="number" class="form-control" name="height">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">State</label>
-                            <input type="text" class="form-control" name="state">
+                            <select name="state[]" class="form-select">
+                                {{-- <option value="">Select state</option> --}}
+                                @foreach ($states as $item)
+                                    <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">City</label>
@@ -220,14 +198,18 @@
                             <label class="form-label">Gotra</label>
                             <input type="text" class="form-control" name="gotra">
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Marital Status</label>
+                            <select name="marital_status[]" class="form-select">
+                                {{-- <option selected>Choose...</option> --}}
+                                <option value="Never Married">Never Married</option>
+                                <option value="Awaiting Divorced">Awaiting Divorced</option>
+                                <option value="Divorced">Divorced</option>
+                                <option value="Widowed">Widowed</option>
+                                <option value="Annulled">Annulled</option>
+                            </select>
+                        </div>
                         {{-- <div class="col-md-6">
-                                    <label class="form-label" >Sub-caste</label>
-                                    <select name="inputState" class="form-select">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
                                     <label class="form-label" >Email</label>
                                     <input type="email" class="form-control" name="inputEmail5">
                                 </div> --}}

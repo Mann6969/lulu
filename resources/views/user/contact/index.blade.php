@@ -1,7 +1,7 @@
 @extends('user.index')
 @section('content')
     <!-- breadcrumb-section -->
-    <div class="breadcrumb-section breadcrumb-bg">
+    <div class="breadcrumb-section breadcrumb-bg" style="background-image:url({{ asset('../user/img/gallery-6.jpg') }});">                                                                                                                               
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">

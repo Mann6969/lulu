@@ -6,17 +6,41 @@
             <h1>Status</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('admin/index')}}">Home</a></li>
                     <li class="breadcrumb-item active">User Files Status</li>
                 </ol>
             </nav>
+            <p class="card-description">
+                @if (Session::has('message'))
+                    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                @endif
+            </p>
         </div><!-- End Page Title -->
 
         <section class="section dashboard">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">User files uploaded</h5>
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                
+                            <h5 class="card-title">User files uploaded</h5>
+                        </div>
+                    
+                            <div class="col-lg-6 ">
+                                <form class="float-end" action="{{ url('admin/searchfile') }}" method="GET" style="margin: 20px">
 
+                                    <div class="input-group ">
+                                        <div class="form-outline ">
+                                            <input type="search" name="search" placeholder="Search" id="form1" class="form-control" />
+    
+                                        </div>
+                                        <button class="btn btn-primary " type="submit"><i
+                                                class="bi bi-search"></i></button>
+                                        </button>
+                                    </div>
+                                </form>
+                    </div>
                     <!-- Table with hoverable rows -->
                     <table class="table table-hover">
                         <thead>
@@ -61,6 +85,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="row">{{ $files->links() }}</div>
                     <!-- End Table with hoverable rows -->
                 </div>
             </div>

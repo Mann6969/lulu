@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\File;
 use App\Models\Promotion;
 use App\Models\Biodata;
+use App\Models\States;
+use App\Models\Cities;
 
 use Illuminate\Support\Facades\DB;
 
@@ -18,6 +20,7 @@ class UserController extends Controller
         try {
             return view('user.dashboard');
         } catch (\Throwable $th) {
+            // return view('user.dashboard');
             return abort(404);
         }
     }
@@ -35,8 +38,8 @@ class UserController extends Controller
         try {
             $files = [];
             // die('hello');
-            if ($request->hasfile('file')) {
-                // die('hello');
+            if ($request->hasfile('file')){
+                die('hello');
                 foreach ($request->file('file') as $file) {
                     // die('hell');
                     $ext = $file->getClientOriginalExtension();
@@ -49,17 +52,19 @@ class UserController extends Controller
                         return redirect('/')->with('message', 'File type is not supported.');
                     }
                 }
+                die('hel');
+                $file = json_encode($files);
+                // die('hello');
+                // $newFile = new File;
+                // die($newFile);
+                // $newFile->filenames = $file;
+                // $newFile->save();
+                // die('hello');
+                File::create(['filenames' => $file]);
+                return redirect('/thankyou');
+            } else {
+                return redirect('/')->with('message', 'File Required.');
             }
-            // die('hel');
-            $file = json_encode($files);
-            // die('hello');
-            // $newFile = new File;
-            // die($newFile);
-            // $newFile->filenames = $file;
-            // $newFile->save();
-            // die('hello');
-            File::create(['filenames' => $file]);
-            return redirect('/thankyou');
         } catch (\Throwable $th) {
             return abort(404);
         }
@@ -93,14 +98,34 @@ class UserController extends Controller
 
     public function profile(Request $request, $id)
     {
-        $data = Biodata::where('id',$id)->first();
+        $data = Biodata::where('id', $id)->first();
         // die(dd($data->name));
-        return view('user.single.single_page_display',['values' => $data]);
+        return view('user.single.single_page_display', ['values' => $data]);
     }
     public function listing()
     {
-        $data = Biodata::select('id','name','caste','religion','dob','education','occupation','img','gender')->get();
-        // die(dd($data));
-        return view('user.listing.listing',['values' => $data]);
+        $data = Biodata::select('id', 'name', 'caste', 'religion', 'dob', 'education', 'occupation', 'img', 'gender');
+        
+        $data = $data->paginate(5);
+        $states = States::all();
+        // die(dd($states));
+        return view('user.listing.listing', ['values' => $data, 'states' => $states]);
+    }
+    public function filter(Request $request)
+    {
+        $data = Biodata::query();
+        // dd($request->filter);
+        if ($request->filter) {
+            $data->whereIn('gender', $request->filter);
+            // dd($data->get());
+        }
+        if ($request->caste) {
+            $data->whereIn('caste', $request->caste);
+        }
+        if ($request->state) {
+            $data->whereIn('state', $request->state);
+        }
+        $states = States::all();
+        return view('user.listing.listing', ['values' => $data->paginate(100), 'states' => $states]);
     }
 }

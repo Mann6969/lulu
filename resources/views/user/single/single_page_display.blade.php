@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- breadcrumb-section -->
-    <div class="breadcrumb-section breadcrumb-bg" style="padding: 110px 0;padding-top:290px">
+    <div class="breadcrumb-section breadcrumb-bg" style="padding: 110px 0;padding-top:290px;background-image:url({{ asset('user/img/gallery-6.jpg') }});">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
@@ -266,13 +266,13 @@
 
 @section('head')
     {{-- single and listing css and js --}}
-    <link href="{{ asset('user/assets2/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('user/assets2/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('user/assets2/css/font-awesome.min.css') }}" />
+    <link href="{{ asset('user/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user/css/font-awesome.min.css') }}" />
     <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
-    <link href="{{ asset('user/assets2/css/animate.css') }}" rel="stylesheet" type="text/css" media="all">
-    <script src="{{ asset('user/assets2/js/jquery-2.1.1.min.js') }}"></script>
-    <script src="{{ asset('user/assets2/js/bootstrap.min.js') }}"></script>
+    <link href="{{ asset('user/css/animate.css') }}" rel="stylesheet" type="text/css" media="all">
+    <script src="{{ asset('user/js/jquery-2.1.1.min.js') }}"></script>
+    <script src="{{ asset('user/js/bootstrap.min.js') }}"></script>
     <style>
         p {
             font-size: 2rem;

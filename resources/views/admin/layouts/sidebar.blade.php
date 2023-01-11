@@ -33,6 +33,18 @@
                 <span>Show User</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('role.index') }}">
+                <i class="bi bi-envelope"></i>
+                <span>Roles</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{url('admin/permission')}} ">
+                <i class="bi bi-envelope"></i>
+                <span>Permissions</span>
+            </a>
+        </li>
         
 
     </ul>

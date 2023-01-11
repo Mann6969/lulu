@@ -10,14 +10,13 @@ class Biodata extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-
         'age',
         'gender',
         'height',
         'city',
         'state',
         'employed_in',
-        
+        'marital_status',
         'fathername',
         'mothername',
         'grandfathername',
