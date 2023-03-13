@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="col-lg-6 ">
-                                <form class="float-end" action="{{ url('admin/searchuser') }}" method="GET"
+                                <form class="float-end" action="{{ route('searchuser') }}" method="GET"
                                     style="margin: 20px">
 
                                     <div class="input-group ">
@@ -68,7 +68,21 @@
                                                     <i class="bi bi-eye-fill"></i></a>
                                                 <a class="btn btn-warning" href="{{ url('admin/edit/' . $data->id) }}">Edit
                                                     <i class="bi bi-pen"></i></a>
-                                                <a class="btn btn-danger">Delete <i class="bi bi-trash-fill"></i></a>
+                                                <form id="delete-form-{{ $data->fid }}" method="post"
+                                      action="{{ url('admin/show_destroy/'. $data->fid) }}" style="display: none">
+                                      @csrf
+                                  </form>
+                                  <a href=""
+                                      onclick="
+                          if(confirm('Are you sure, You Want to delete this?'))
+                            {
+                              event.preventDefault();
+                              document.getElementById('delete-form-{{ $data->fid }}').submit();
+                            }
+                            else{
+                              event.preventDefault();
+                            }"><span
+                                          class="btn btn-danger">Delete</span></a>
                                             </td>
 
                                         </tr>

@@ -42,107 +42,108 @@
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="section-title">
                         <h3><span class="orange-text">Our</span> Profiles</h3>
-                        {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p> --}}
                     </div>
                 </div>
             </div>
-
+            {{-- iske niche --}}
             <div class="row">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="single-latest-news">
-                                <a href="single-news.html">
-                                    <div class="latest-news-bg news-bg-1"></div>
-                                </a>
-                                <div class="news-text-box">
-                                    <h3><a href="single-news.html">You will vainly look for fruit on it in autumn.</a></h3>
-                                    <p class="blog-meta">
-                                        <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                        <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                    </p>
-                                    <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
-                                        Praesent vitae mattis nunc, egestas viverra eros.</p>
-                                    <a href="single-news.html" class="read-more-btn">read more <i
-                                            class="fas fa-angle-right"></i></a>
+                <div class="col-lg-4 col-md-6">
+                    <a href="{{ route('listing') }}">
+                        <div class="single-team-item">
+                            <div class="team-bg"
+                                style="background-image: url({{ asset('files/profile_img/' . $values[0]->img) }});">
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="details_16">
+                                        <ul>
+                                            <li>Caste</li>
+                                            <li>Religion</li>
+                                            <li>City</li>
+                                            <li>State</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="details_16">
+                                        <ul>
+                                            <li>: {{ $values[0]->caste }}</li>
+                                            <li>: {{ $values[0]->religion }}</li>
+                                            <li>: {{ $values[0]->city }}</li>
+                                            <li>: {{ $values[0]->state }}</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <div class="single-latest-news">
-                                <a href="single-news.html">
-                                    <div class="latest-news-bg news-bg-2"></div>
-                                </a>
-                                <div class="news-text-box">
-                                    <h3><a href="single-news.html">A man's worth has its season, like tomato.</a></h3>
-                                    <p class="blog-meta">
-                                        <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                        <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                    </p>
-                                    <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
-                                        Praesent vitae mattis nunc, egestas viverra eros.</p>
-                                    <a href="single-news.html" class="read-more-btn">read more <i
-                                            class="fas fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="single-latest-news">
-                                <a href="single-news.html">
-                                    <div class="latest-news-bg news-bg-3"></div>
-                                </a>
-                                <div class="news-text-box">
-                                    <h3><a href="single-news.html">Good thoughts bear good fresh juicy fruit.</a></h3>
-                                    <p class="blog-meta">
-                                        <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                        <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                    </p>
-                                    <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
-                                        Praesent vitae mattis nunc, egestas viverra eros.</p>
-                                    <a href="single-news.html" class="read-more-btn">read more <i
-                                            class="fas fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
+                    </a>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <a href="{{ route('listing') }}" class="boxed-btn">More Profiles</a>
-                    </div>
+                <div class="col-lg-4 col-md-6">
+                    <a href="{{ route('listing') }}">
+                        <div class="single-team-item">
+                            <div class="team-bg"
+                                style="background-image: url({{ asset('files/profile_img/' . $values[1]->img) }});">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="details_16">
+                                        <ul>
+                                            <li>Caste</li>
+                                            <li>Religion</li>
+                                            <li>City</li>
+                                            <li>State</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="details_16">
+                                        <ul>
+                                            <li>: {{ $values[1]->caste }}</li>
+                                            <li>: {{ $values[1]->religion }}</li>
+                                            <li>: {{ $values[1]->city }}</li>
+                                            <li>: {{ $values[1]->state }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+                    <a href="{{ route('listing') }}">
+                        <div class="single-team-item">
+                            <div class="team-bg"
+                                style="background-image: url({{ asset('files/profile_img/' . $values[2]->img) }});">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="details_16">
+                                        <ul>
+                                            <li>Caste</li>
+                                            <li>Religion</li>
+                                            <li>City</li>
+                                            <li>State</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="details_16">
+                                        <ul>
+                                            <li>: {{ $values[2]->caste }}</li>
+                                            <li>: {{ $values[2]->religion }}</li>
+                                            <li>: {{ $values[2]->city }}</li>
+                                            <li>: {{ $values[2]->state }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-        <!-- profile -->
-        {{-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="..." class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div> --}}
+
         <!-- testimonail-section -->
         <div class="testimonail-section mt-150 mb-150">
             <div class="container">
@@ -281,10 +282,27 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <a href="news.html" class="boxed-btn">More News</a>
+                        <a href="{{ route('blog') }}" class="boxed-btn">More News</a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- end latest news -->
-    @endsection
+    </div>
+@endsection
+
+{{-- @section('head')
+    <link rel="stylesheet" href="{{ asset('carousel/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('carousel/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('carousel/https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('carousel/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('carousel/css/style.css') }}">
+@endsection --}}
+
+{{-- @section('script')
+    <script src="{{ asset('carousel/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('carousel/js/popper.js') }}"></script>
+    <script src="{{ asset('carousel/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('carousel/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('carousel/js/main.js') }}"></script>
+@endsection --}}

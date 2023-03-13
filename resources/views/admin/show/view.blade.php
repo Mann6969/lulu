@@ -114,11 +114,16 @@
                                         <div class="col-lg-3 col-md-3 label ">Nakshatra</div>
                                         <div class="col-lg-3 col-md-3">{{ $show->nakshatra }}</div>
                                     </div>
-                                    
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Marital Status</div>
-                                        <div class="col-lg-9 col-md-8">{{ $show->marital_status }}</div>
+                                        <div class="col-lg-3 col-md-3 label ">Marital Status</div>
+                                        <div class="col-lg-3 col-md-3">{{ $show->marital_status }}</div>
+                                        <div class="col-lg-3 col-md-3 label ">Manglik</div>
+                                        <div class="col-lg-3 col-md-3">{{ $show->manglik }}</div>
                                     </div>
+                                    {{-- <div class="row">
+                                        <div class="col-lg-3 col-md-4 label"></div>
+                                        <div class="col-lg-9 col-md-8">{{  }}</div>
+                                    </div> --}}
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Occupation</div>
                                         <div class="col-lg-9 col-md-8">{{ $show->occupation }}</div>

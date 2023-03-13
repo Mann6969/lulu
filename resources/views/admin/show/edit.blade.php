@@ -8,6 +8,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('admin/index') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/show_user') }}">User</a></li>
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </nav>
@@ -257,7 +258,11 @@
                         <div class="col-12 d-flex justify-content-center">
                             <div class="form-check">
                                 <label class="form-check-label">Manglik </label>
-                                <input class="form-check-input" value="1" type="checkbox" name="manglik">
+
+                                <input class="form-check-input" type="checkbox"  
+                                @if ($show->manglik == 1) {{ 'selected' }} 
+                                @endif 
+                                name="manglik">
                             </div>
                         </div>
                         <div class="text-center">

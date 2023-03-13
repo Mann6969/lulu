@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">hello</div>
+            {{-- <div class="row">hello</div> --}}
         </div>
     </div>
     <!-- end breadcrumb section -->

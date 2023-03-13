@@ -7,9 +7,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Role;
+use App\Models\User_role;
 
 class User extends Authenticatable
 {
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

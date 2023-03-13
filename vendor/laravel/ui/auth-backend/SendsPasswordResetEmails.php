@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 
+use Illuminate\Support\Facades\Mail;
+
 trait SendsPasswordResetEmails
 {
     /**
@@ -35,7 +37,7 @@ trait SendsPasswordResetEmails
         $response = $this->broker()->sendResetLink(
             $this->credentials($request)
         );
-
+        // die("Sended");
         return $response == Password::RESET_LINK_SENT
                     ? $this->sendResetLinkResponse($request, $response)
                     : $this->sendResetLinkFailedResponse($request, $response);
@@ -72,6 +74,20 @@ trait SendsPasswordResetEmails
      */
     protected function sendResetLinkResponse(Request $request, $response)
     {
+        // dd($request->email);
+        // $user = $request;
+        // $data = 'Click on this link for reset your Password https://laravel.com/docs/9.x';
+        // Mail::send('email',['user' => $user, 'data' => $data] , function ($message) use ($user) {
+        //     $message->from('nhibatarha69@gmial.com', 'Mann small pp');
+        //     // $message->sender('nhibatarha69@gmial.com', 'John Doe');
+        //     $message->to($user->email, 'Johnny Sins');
+        //     // $message->cc('john@johndoe.com', 'John Doe');
+        //     // $message->bcc('john@johndoe.com', 'John Doe');
+        //     // $message->replyTo('john@johndoe.com', 'John Doe');
+        //     $message->subject('Password Change Request');
+        //     // $message->priority(3);
+        //     // $message->attach('pathToFile');
+        // });
         return $request->wantsJson()
                     ? new JsonResponse(['message' => trans($response)], 200)
                     : back()->with('status', trans($response));

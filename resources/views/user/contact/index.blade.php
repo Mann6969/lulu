@@ -1,7 +1,7 @@
 @extends('user.index')
 @section('content')
     <!-- breadcrumb-section -->
-    <div class="breadcrumb-section breadcrumb-bg" style="background-image:url({{ asset('../user/img/gallery-6.jpg') }});">                                                                                                                               
+    <div class="breadcrumb-section breadcrumb-bg" style="background-image:url({{ asset('../user/img/gallery-6.jpg') }});">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
@@ -28,39 +28,39 @@
                     </div>
                     <div id="form_status"></div>
                     <div class="contact-form">
-                        <form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+                        <form method="post" action="{{ route('contact.upload') }}">
+                            @csrf
+                            <div class="col-12">
+                                <div class="col-6">
+                                @error('name')
+                                    <span class="text-danger col-6">{{ $message }}</span>
+                                @enderror
+                                </div>
+                                <div class="col-6">
+                                @error('email')
+                                    <span class="text-danger col-6">{{ $message }}</span>
+                                @enderror
+                                </div>
+                            </div>
                             <p>
-                                <input type="text" placeholder="Name" name="name" id="name">
-                                <input type="email" placeholder="Email" name="email" id="email">
+                                <input type="text" placeholder="Name" name="name" id="name" required>
+                                <input type="email" placeholder="Email" name="email" id="email" required>
                             </p>
                             <p>
                                 <input type="tel" placeholder="Phone" name="phone" id="phone">
-                                <input type="text" placeholder="Subject" name="subject" id="subject">
                             </p>
                             <p>
-                                <textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                @error('message')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <textarea name="message" id="message" cols="30" rows="10" placeholder="Message" required></textarea>
                             </p>
                             <input type="hidden" name="token" value="FsWga4&@f6aw" />
-                            <p><input type="submit" value="Submit"></p>
+                            <button type="submit" class="btn btn-success" style="margin-top:10px">Submit</button>
+                            {{-- <p><button type="submit" value="Submit"></p> --}}
                         </form>
                     </div>
                 </div>
-                {{-- <div class="col-lg-4">
-                    <div class="contact-form-wrap">
-                        <div class="contact-form-box">
-                            <h4><i class="fas fa-map"></i> Shop Address</h4>
-                            <p>34/8, East Hukupara <br> Gifirtok, Sadan. <br> Country Name</p>
-                        </div>
-                        <div class="contact-form-box">
-                            <h4><i class="far fa-clock"></i> Shop Hours</h4>
-                            <p>MON - FRIDAY: 8 to 9 PM <br> SAT - SUN: 10 to 8 PM </p>
-                        </div>
-                        <div class="contact-form-box">
-                            <h4><i class="fas fa-address-book"></i> Contact</h4>
-                            <p>Phone: +00 111 222 3333 <br> Email: support@fruitkha.com</p>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>

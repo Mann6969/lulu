@@ -25,6 +25,7 @@
                             <li><a href="{{ route('index') }}">Home</a></li>
                             <li><a href="{{ route('listing') }}">Listing</a></li>
                             <li><a href="">About</a></li>
+                            <li><a href="{{ route('blog') }}">Blog</a></li>
                             <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </nav>

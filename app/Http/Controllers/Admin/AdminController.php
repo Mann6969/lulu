@@ -16,16 +16,6 @@ use App\Mail\TestMail;
 class AdminController extends Controller
 {
     // testing
-    
-
-
-
-
-
-
-
-
-
 
 
     // main
@@ -71,7 +61,8 @@ class AdminController extends Controller
     }
     public function submit(Request $request)
     {
-        try {
+        // dd($request);
+        // try {
         
         $data = $request->validate([
             'name' => 'required',
@@ -124,8 +115,8 @@ class AdminController extends Controller
         $biodata->caste = $data['caste'][0];
         $biodata->gotra = $data['gotra'];
         $biodata->description = $request->description;
-        if ($request->manglik == "on") {
-            $biodata->manglik = 1;
+        if ($request->manglik == "1") {
+            $biodata->manglik = '1';
         }
 
         $biodata->fid = $request->fid;
@@ -136,10 +127,10 @@ class AdminController extends Controller
         $file->status = 1;
         $file->update();
         return redirect('admin/upload_user')->with('message','User added successfully');
-        } catch (\Throwable $th) {
+        // } catch (\Throwable $th) {
             
-            return abort(404);
-        }
+        //     return abort(404);
+        // }
     }
     public function view($id)
     {
@@ -188,7 +179,7 @@ class AdminController extends Controller
             $biodata->employed_in = $request->employed_in[0];
             if ($request->hasfile('img')) {
                 if($biodata->img){
-                die('Has image');
+                // die('Has image');
                     Folder::delete($biodata->img);}
                 $ext = $request->img->getClientOriginalExtension();
                 $whitelist = array('png', 'jpeg', 'jpg');
@@ -207,8 +198,8 @@ class AdminController extends Controller
             $biodata->caste = $data['caste'][0];
             $biodata->gotra = $data['gotra'];
             $biodata->description = $request->description;
-            if ($request->manglik == "on") {
-                $biodata->manglik = 1;
+            if (isset($request->manglik)) {
+                $biodata->manglik = '1';
             }
     
             $biodata->fid = $request->fid;
@@ -228,6 +219,13 @@ class AdminController extends Controller
             return abort(404);
         }
     }
+    public function delete($id)
+    {
+        // die(dd('Works'));
+        Biodata::where('fid', $id)->delete();
+        return redirect('admin/show_user')->with('message', 'Deleted blog Successfully!!!!');
+    }
+
     public function subscribed(){
         try {
             $show = Promotion::all();
@@ -245,13 +243,14 @@ class AdminController extends Controller
             ->where('biodatas.name','LIKE','%'.$request->search.'%')
             ->orwhere('biodatas.phone','LIKE','%'.$request->search.'%')
             ->paginate(5);
-            return view('admin.status', ['show' => $show]);
+            return view('admin.show.show_user', ['show' => $show]);
         }
         else{
-            return redirect('admin/show_user')->with('message', 'empty search');
+            return redirect('admin/show_user')->with('message', 'empty search1');
         }
     }
     public function search_file(Request $request){
+        // dd($request);
         if($request->search){
             
             $file = File::where('filenames','LIKE','%'.$request->search.'%')
@@ -260,7 +259,7 @@ class AdminController extends Controller
             return view('admin.status', ['files' => $file]);
         }
         else{
-            return redirect('admin/show_user')->with('message', 'empty search');
+            return redirect('admin/upload_user')->with('message', 'empty search');
         }
 
     }

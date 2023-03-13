@@ -8,10 +8,13 @@
     <title>Dashboard</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
+    {{--  --}}
+    <script src="https://cdn.ckeditor.com/4.20.1/full-all/ckeditor.js"></script>
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -79,7 +82,25 @@
             }
         }
     </script>
-    <!-- <script src="{{ asset('admin/assets/js/data.js') }}"></script> -->
+    {{-- <script>
+        ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+</script> --}}
+    <script>
+        CKEDITOR.replace('editor1', {
+            filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }} ",
+            filebrowserUploadMethod: "form"
+        });
+        // config.extraPlugins = 'uploadimage';
+    </script>
+
+    {{-- <!-- <script src="{{ asset('admin/assets/js/data.js') }}"></script> --> --}}
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('head')
-<link rel="stylesheet" href="{{ asset('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
 
         <section class="section files">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="padding: 20px">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             {{-- {{ implode(' ', $errors->all(':message')) }} --}}

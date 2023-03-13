@@ -58,19 +58,15 @@
                                                                     action="{{ route('role.destroy', $role->id) }}"
                                                                     style="display: none">
                                                                     @csrf
-                                                                    {{ method_field('DELETE') }}
                                                                 </form>
-                                                                <a href=""
-                                                                    onclick="
-                                                                if(confirm('Are you sure, You Want to delete this?'))
-                                                                {
-                                                                  event.preventDefault();
-                                                                  document.getElementById('delete-form-{{ $role->id }}').submit();
-                                                                }
-                                                                else{
-                                                                  event.preventDefault();
-                                                                }"><span
-                                                                        class="glyphicon glyphicon-trash"></span></a>
+                                                                <a href="" onclick="
+                                                                    if(confirm('Are you sure, You Want to delete this?'))
+                                                                    {
+                                                                        event.preventDefault();
+                                                                        document.getElementById('delete-form-{{ $role->id }}').submit();
+                                                                    }else{
+                                                                        event.preventDefault();
+                                                                    }"><span class="glyphicon glyphicon-trash"></span></a>
                                                             </td>
                                                         </tr>
                                                         </tr>

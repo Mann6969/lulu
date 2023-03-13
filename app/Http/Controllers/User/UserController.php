@@ -9,8 +9,12 @@ use App\Models\Promotion;
 use App\Models\Biodata;
 use App\Models\States;
 use App\Models\Cities;
+use App\Models\Blog;
+use App\Models\User;
+use App\Models\Contact;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -18,7 +22,12 @@ class UserController extends Controller
     {
         // die("hello");
         try {
-            return view('user.dashboard');
+            $data = Biodata::select('caste', 'religion',  'city', 'state', 'img')->orderBy('id', 'DESC')->limit(3)->get();
+            // dd($data);
+
+            // $data = $data->paginate(5);
+            $states = States::all();
+            return view('user.dashboard', ['values' => $data, 'states' => $states]);
         } catch (\Throwable $th) {
             // return view('user.dashboard');
             return abort(404);
@@ -38,8 +47,8 @@ class UserController extends Controller
         try {
             $files = [];
             // die('hello');
-            if ($request->hasfile('file')){
-                die('hello');
+            if ($request->hasfile('file')) {
+                // die('hello');
                 foreach ($request->file('file') as $file) {
                     // die('hell');
                     $ext = $file->getClientOriginalExtension();
@@ -52,7 +61,7 @@ class UserController extends Controller
                         return redirect('/')->with('message', 'File type is not supported.');
                     }
                 }
-                die('hel');
+                // die('hel');
                 $file = json_encode($files);
                 // die('hello');
                 // $newFile = new File;
@@ -105,7 +114,7 @@ class UserController extends Controller
     public function listing()
     {
         $data = Biodata::select('id', 'name', 'caste', 'religion', 'dob', 'education', 'occupation', 'img', 'gender');
-        
+
         $data = $data->paginate(5);
         $states = States::all();
         // die(dd($states));
@@ -114,10 +123,8 @@ class UserController extends Controller
     public function filter(Request $request)
     {
         $data = Biodata::query();
-        // dd($request->filter);
         if ($request->filter) {
             $data->whereIn('gender', $request->filter);
-            // dd($data->get());
         }
         if ($request->caste) {
             $data->whereIn('caste', $request->caste);
@@ -127,5 +134,82 @@ class UserController extends Controller
         }
         $states = States::all();
         return view('user.listing.listing', ['values' => $data->paginate(100), 'states' => $states]);
+    }
+    public function blog()
+    {
+        $data = Blog::all();
+        $users = User::join('blogs', 'users.id', '=', 'blogs.posted_by')
+               ->get(['users.*']);
+               foreach($data as $blog){
+               die(dd($users));
+           }
+        return view('user.blog.blog',['blogs' => $data,'user'=>$users]);
+    }
+    public function singleBlog($slug)
+    {
+        // dd($slug);
+        $data = Blog::where('slug','=',$slug)->first();
+        $blogs = Blog::select('meta_key','slug')->orderBy('id', 'DESC')->limit(5)->get();
+       // dd($blogs);
+        return view('user.blog.single',['data' => $data,'posts'=>$blogs]);
+    }
+
+    public function contactUpload(Request $request)
+    {
+        // dd($request->all());
+        $validate = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'message' => 'required',
+        ], [
+            'name.required' => 'Name is must',
+            'email.required' => 'Please enter your mail',
+        ]);
+        if ($validate->fails()) {
+            return back()->withErrors($validate->errors())->withInput();
+        }
+        if (empty($request->phone)) {
+            Contact::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'message' => $request->message,
+                // 'phone' => $request->phone,
+                'status' => 1,
+            ]);
+        } else {
+            Contact::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'message' => $request->message,
+                'phone' => $request->phone,
+                'status' => 1,
+            ]);
+        }
+        // try {
+        // die($request->email);
+        // $email = $request->validate([
+        //     'name' => 'required',
+        //     'message' => 'required',
+        //     'email' => 'required',
+        // ]);
+        // die('hekk');
+        // if (empty($email['email'])) {
+        //     // die('heii');
+        //     return back()->with('message', 'Please enter proper email address.');
+        // }
+        // die('hekk');
+        // $email = $email['email'];
+        // die($email);
+        // DB::insert('insert into promotion (email) values (?)', [$email]);
+        // $data = new Promotion;
+        // $data->email = $email;
+        // $data->save();
+        // Promotion::create(['email' => $email]);
+        // die($email['email']);
+        return redirect('/index');
+        // } catch (\Throwable $th) {
+        //     die(':(');
+        //     return abort(404);
+        // }
     }
 }

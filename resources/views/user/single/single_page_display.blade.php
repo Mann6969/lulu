@@ -36,7 +36,7 @@
                                 <div class="col-sm-4 space_all">
                                     <div class="details_3">
                                         <p>
-                                            <a href="#"><img src="
+                                            <a><img src="
                                                 @if ($values->img == null)
                                                     @if ($values->gender == 'male')
                                                         {{ asset('user/img/male.jpg') }}
@@ -46,7 +46,7 @@
                                                 @else
                                                     {{ asset('files/profile_img/'.$values->img) }}
                                                 @endif
-                                                "width="100%">
+                                                "width="100%" oncontextmenu="return false;">
                                             </a>
                                         </p>
                                     </div>
@@ -204,7 +204,14 @@
                                     </div>
                                     <div class="col-sm-6 space_all">
                                         <div class="details_15">
-                                            <h4><i class="fa fa-map"></i>Bride's Location</h4>
+                                            <h4><i class="fa fa-map"></i>
+                                                @if ($values->gender == 'male')
+                                                    {{ ('Broom') }}
+                                                @else
+                                                    {{ ('Bride') }}
+                                                @endif
+                                                Location
+                                            </h4>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="details_17">

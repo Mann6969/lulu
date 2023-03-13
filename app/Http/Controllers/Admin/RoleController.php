@@ -48,21 +48,6 @@ class RoleController extends Controller
             $roles = new Role;
             $roles->name = $request->name;
             $roles->save();
-            // $id = $roles->id;
-            // $per = $request->permission;
-            // // dd($per);
-            // foreach($per as $value) {
-            //     // die($value);
-            //     // dd($value);
-            //     $temp = new Permission_roles;
-            //     $temp->role_id = $id;
-            //     $temp->permission_id = $value;
-            //     $temp->save();
-            //     // die($temp);
-            // }
-            // die('12');
-            // $hell=Permission_roles::all();
-            // dd($hell);
             // Many to many relation between Roles and Permissions
             $roles->permissions()->sync($request->permission);
             return redirect (route('role.index'))->with('message','Roles Created Successfully');
